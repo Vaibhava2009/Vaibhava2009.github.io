@@ -37,7 +37,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Glow */
         .bg-glow {
             position: fixed;
             width: 550px;
@@ -51,7 +50,6 @@
             pointer-events: none;
         }
 
-        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -94,7 +92,6 @@
             color: var(--accent);
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -212,7 +209,6 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Image */
         .hero-img-wrapper {
             position: relative;
         }
@@ -245,7 +241,6 @@
             opacity: 0.45;
         }
 
-        /* Section Global */
         section {
             padding: 80px 8%;
         }
@@ -264,7 +259,6 @@
             color: var(--text-sub);
         }
 
-        /* Student & Goal Card */
         .about-cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -295,7 +289,6 @@
             font-size: 0.95rem;
         }
 
-        /* Projects Section */
         .project-grid {
             max-width: 800px;
             margin: 0 auto;
@@ -351,7 +344,6 @@
             color: #cbd5e1;
         }
 
-        /* Hire / Request Form */
         .request-box {
             max-width: 750px;
             margin: 0 auto;
@@ -400,6 +392,13 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
         }
 
+        #formStatus {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
         .email-contact-strip {
             margin-top: 30px;
             padding: 16px 20px;
@@ -413,7 +412,6 @@
             gap: 15px;
         }
 
-        /* Skills */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -435,7 +433,6 @@
             color: var(--text-main);
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--card-border);
             text-align: center;
@@ -460,7 +457,6 @@
 
     <div class="bg-glow"></div>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">Vaibhava <span>Kumar</span></div>
         <ul class="nav-links">
@@ -472,7 +468,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="status-badge">
@@ -493,12 +488,10 @@
 
         <div class="hero-img-wrapper">
             <div class="img-backdrop"></div>
-            <!-- File path: uses profile.jpg or your uploaded WhatsApp image file -->
-            <img src="profile.jpg" alt="Vaibhava Kumar" class="hero-img" onerror="this.onerror=null; this.src='WhatsApp Image 2026-08-28 at 10.48.02 AM.jpeg';">
+            <img src="WhatsApp Image 2026-08-28 at 10.48.02 AM.jpeg" alt="Vaibhava Kumar" class="hero-img" onerror="this.onerror=null; this.src='profile.jpg';">
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="section-title">
             <h2>Background & Ambition</h2>
@@ -522,7 +515,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="section-title">
             <h2>Featured Project</h2>
@@ -551,28 +543,31 @@
         </div>
     </section>
 
-    <!-- Hire / Request Website Section -->
     <section id="hire">
         <div class="section-title">
             <h2>Work With Me / Request a Website 🚀</h2>
-            <p>Apni details aur requirements yahan bharein, direct email draft ho jayega:</p>
+            <p>Apni details aur requirements yahan bharein, details automatic mere email par aa jayengi:</p>
         </div>
 
         <div class="request-box">
-            <form id="contactForm" onsubmit="handleEmailSubmit(event)">
+            <!-- Web3Forms with your Access Key -->
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="7c475949-468e-43bd-803d-628e17331c34">
+                <input type="hidden" name="subject" value="New Website Inquiry for Vaibhava Kumar">
+
                 <div class="form-group">
                     <label for="clientName"><i class="fas fa-user"></i> Aapka Naam (Your Name):</label>
-                    <input type="text" id="clientName" placeholder="e.g. Rahul Sharma" required>
+                    <input type="text" id="clientName" name="name" placeholder="e.g. Rahul Sharma" required>
                 </div>
 
                 <div class="form-group">
                     <label for="clientContact"><i class="fas fa-phone-alt"></i> Phone / Email (Contact details):</label>
-                    <input type="text" id="clientContact" placeholder="Your phone number or email" required>
+                    <input type="text" id="clientContact" name="contact" placeholder="Your phone number or email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="purposeType"><i class="fas fa-briefcase"></i> Purpose / Kaisi Website Chahiye?:</label>
-                    <select id="purposeType" required>
+                    <select id="purposeType" name="purpose" required>
                         <option value="Personal Portfolio">Personal Portfolio Website</option>
                         <option value="Business / Shop Website">Business / Local Shop Website</option>
                         <option value="School / Coaching Website">School / Coaching Institute Website</option>
@@ -584,17 +579,17 @@
 
                 <div class="form-group">
                     <label for="messageDesc"><i class="fas fa-pencil-alt"></i> Requirements / Message Details:</label>
-                    <textarea id="messageDesc" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
+                    <textarea id="messageDesc" name="message" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
                 </div>
 
                 <div style="display: flex;">
-                    <button type="submit" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
+                    <button type="submit" id="submitBtn" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
                         <i class="fas fa-paper-plane"></i> Send Details via Email
                     </button>
                 </div>
+                <div id="formStatus"></div>
             </form>
 
-            <!-- Direct Official Email Strip -->
             <div class="email-contact-strip">
                 <div>
                     <strong style="color: #fff; font-size: 0.95rem;"><i class="fas fa-envelope-open-text" style="color: var(--accent); margin-right: 8px;"></i> Direct Email for Jobs/Inquiries:</strong>
@@ -607,7 +602,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
@@ -624,34 +618,51 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 <strong>Vaibhava Kumar</strong>. Student Developer & IIT Bombay CSE Aspirant 🚀</p>
     </footer>
 
-    <!-- Direct Email Submission Script -->
+    <!-- Instant Submission via Web3Forms API -->
     <script>
-        function handleEmailSubmit(event) {
-            event.preventDefault();
+        const form = document.getElementById("contactForm");
+        const statusText = document.getElementById("formStatus");
+        const submitBtn = document.getElementById("submitBtn");
 
-            const myEmail = "vaibhavakumarofficial@gmail.com";
-            const name = document.getElementById("clientName").value.trim();
-            const contact = document.getElementById("clientContact").value.trim();
-            const purpose = document.getElementById("purposeType").value;
-            const desc = document.getElementById("messageDesc").value.trim();
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending Details...`;
+            statusText.innerHTML = "";
 
-            const subject = encodeURIComponent(`Website / Job Inquiry: ${name} (${purpose})`);
-            const body = encodeURIComponent(
-                `Hello Vaibhava,\n\n` +
-                `Here are my project requirements:\n\n` +
-                `Name: ${name}\n` +
-                `Contact: ${contact}\n` +
-                `Project Type: ${purpose}\n\n` +
-                `Details:\n${desc}\n`
-            );
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-        }
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    statusText.style.color = "#4ade80";
+                    statusText.innerHTML = "✅ Details successfully sent! Vaibhava will review and reply soon.";
+                    form.reset();
+                } else {
+                    statusText.style.color = "#f87171";
+                    statusText.innerHTML = `❌ ${result.message || "Error sending message."}`;
+                }
+            } catch (error) {
+                statusText.style.color = "#f87171";
+                statusText.innerHTML = "❌ Network error. Please check your connection.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Send Details via Email`;
+            }
+        });
     </script>
 </body>
 </html>
