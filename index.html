@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhava Kumar | Student Developer & IIT Bombay Aspirant</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --email-red: #ea4335;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --target-gradient: linear-gradient(135deg, #f59e0b, #ec4899);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow */
+        .bg-glow {
+            position: fixed;
+            width: 550px;
+            height: 550px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            backdrop-filter: blur(12px);
+            background: rgba(11, 15, 25, 0.75);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 8% 40px;
+            gap: 60px;
+            flex-wrap: wrap-reverse;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .badge-dream {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 50px;
+            color: #fbbf24;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+            width: fit-content;
+        }
+
+        .hero-content h1 {
+            font-size: 3.4rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            max-width: 550px;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 26px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0b0f19;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            background: var(--card-bg);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-red {
+            background: var(--email-red);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+        }
+
+        .btn-red:hover {
+            background: #c5221f;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image */
+        .hero-img-wrapper {
+            position: relative;
+        }
+
+        .hero-img {
+            width: 320px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 2px solid var(--card-border);
+            position: relative;
+            z-index: 1;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-img:hover {
+            border-color: var(--accent);
+        }
+
+        .img-backdrop {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--accent), transparent);
+            z-index: 0;
+            opacity: 0.45;
+        }
+
+        /* Section Global */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: var(--text-sub);
+        }
+
+        /* Student & Goal Card */
+        .about-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent);
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tech-item {
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #cbd5e1;
+        }
+
+        /* Hire / Request Form */
+        .request-box {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: #e2e8f0;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: rgba(15, 23, 42, 0.6);
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group select option {
+            background: #0f172a;
+            color: #fff;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .email-contact-strip {
+            margin-top: 30px;
+            padding: 16px 20px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px dashed var(--accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            padding: 40px 8%;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero { text-align: center; }
+            .badge-dream { margin: 0 auto 20px; }
+            .cta-btns { justify-content: center; }
+            .nav-links { display: none; }
+            .hero-img { width: 280px; height: 320px; }
+            .request-box { padding: 25px; }
+            .email-contact-strip { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Vaibhava <span>Kumar</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#hire">Hire / Request</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="status-badge">
+                <i class="fas fa-book-reader"></i> Student & Self-Taught Web Developer
+            </div>
+            <div class="badge-dream">
+                <i class="fas fa-graduation-cap"></i> Dream: CSE @ IIT Bombay 🎯
+            </div>
+            <h1>Hi, I'm <span>Vaibhava Kumar</span></h1>
+            <p>
+                A high school student passionate about Computer Science, mathematics, and building responsive web applications. Looking forward to student internships, freelance web projects, and software opportunities.
+            </p>
+            <div class="cta-btns">
+                <a href="#hire" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact / Request Web</a>
+                <a href="https://github.com/vaibhava2009" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+
+        <div class="hero-img-wrapper">
+            <div class="img-backdrop"></div>
+            <!-- File path: uses profile.jpg or your uploaded WhatsApp image file -->
+            <img src="profile.jpg" alt="Vaibhava Kumar" class="hero-img" onerror="this.onerror=null; this.src='WhatsApp Image 2026-08-28 at 10.48.02 AM.jpeg';">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>Background & Ambition</h2>
+            <p>Balancing rigorous academics with a passion for software development</p>
+        </div>
+
+        <div class="about-cards-container">
+            <div class="info-card">
+                <h3 style="color: #fbbf24;"><i class="fas fa-bullseye"></i> Dream: IIT Bombay CSE</h3>
+                <p>
+                    My ultimate goal is to crack JEE Advanced and pursue <strong>Computer Science & Engineering at IIT Bombay</strong>. I dedicate myself to mathematics and core logic, building the foundation required for top-tier software engineering.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3 style="color: var(--accent);"><i class="fas fa-laptop-code"></i> Student Developer</h3>
+                <p>
+                    Alongside academic studies, I build practical front-end tools and web solutions. I am eager to take on freelance websites and junior learning opportunities to sharpen my real-world skills.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>Featured Project</h2>
+            <p>Live applications built and hosted by me</p>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-tag">Live Web Application</span>
+                <h3>🔢 Vaibhav Number App</h3>
+                <p>
+                    An interactive, logic-driven web application hosted live on GitHub Pages. Provides instant mathematical calculations, responsive controls, and intuitive interface design.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-item">JavaScript (ES6+)</span>
+                    <span class="tech-item">HTML5</span>
+                    <span class="tech-item">CSS3</span>
+                    <span class="tech-item">GitHub Pages</span>
+                </div>
+                <div>
+                    <a href="https://vaibhava2009.github.io/vaibhav-number-app/" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Open Live App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hire / Request Website Section -->
+    <section id="hire">
+        <div class="section-title">
+            <h2>Work With Me / Request a Website 🚀</h2>
+            <p>Apni details aur requirements yahan bharein, direct email draft ho jayega:</p>
+        </div>
+
+        <div class="request-box">
+            <form id="contactForm" onsubmit="handleEmailSubmit(event)">
+                <div class="form-group">
+                    <label for="clientName"><i class="fas fa-user"></i> Aapka Naam (Your Name):</label>
+                    <input type="text" id="clientName" placeholder="e.g. Rahul Sharma" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientContact"><i class="fas fa-phone-alt"></i> Phone / Email (Contact details):</label>
+                    <input type="text" id="clientContact" placeholder="Your phone number or email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purposeType"><i class="fas fa-briefcase"></i> Purpose / Kaisi Website Chahiye?:</label>
+                    <select id="purposeType" required>
+                        <option value="Personal Portfolio">Personal Portfolio Website</option>
+                        <option value="Business / Shop Website">Business / Local Shop Website</option>
+                        <option value="School / Coaching Website">School / Coaching Institute Website</option>
+                        <option value="E-Commerce / Store">Online Store / E-Commerce</option>
+                        <option value="Student Internship / Job Offer">Job / Internship Opportunity</option>
+                        <option value="Other Custom Project">Other Custom Project</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="messageDesc"><i class="fas fa-pencil-alt"></i> Requirements / Message Details:</label>
+                    <textarea id="messageDesc" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
+                </div>
+
+                <div style="display: flex;">
+                    <button type="submit" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
+                        <i class="fas fa-paper-plane"></i> Send Details via Email
+                    </button>
+                </div>
+            </form>
+
+            <!-- Direct Official Email Strip -->
+            <div class="email-contact-strip">
+                <div>
+                    <strong style="color: #fff; font-size: 0.95rem;"><i class="fas fa-envelope-open-text" style="color: var(--accent); margin-right: 8px;"></i> Direct Email for Jobs/Inquiries:</strong>
+                    <div style="color: var(--accent); font-family: monospace; font-size: 1rem; margin-top: 4px;">vaibhavakumarofficial@gmail.com</div>
+                </div>
+                <a href="mailto:vaibhavakumarofficial@gmail.com?subject=Inquiry%20for%20Vaibhava" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+                    <i class="fas fa-envelope"></i> Mail Directly
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-title">
+            <h2>Technical Skills</h2>
+            <p>Core competencies & academic strengths</p>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-badge"><i class="fab fa-html5" style="color: #e34f26;"></i> HTML5</div>
+            <div class="skill-badge"><i class="fab fa-css3-alt" style="color: #1572b6;"></i> CSS3 & Styling</div>
+            <div class="skill-badge"><i class="fab fa-js" style="color: #f7df1e;"></i> JavaScript</div>
+            <div class="skill-badge"><i class="fab fa-github" style="color: #ffffff;"></i> Git & GitHub</div>
+            <div class="skill-badge"><i class="fas fa-mobile-alt" style="color: #38bdf8;"></i> Responsive UI</div>
+            <div class="skill-badge"><i class="fas fa-brain" style="color: #a855f7;"></i> Mathematics & Logic</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <strong>Vaibhava Kumar</strong>. Student Developer & IIT Bombay CSE Aspirant 🚀</p>
+    </footer>
+
+    <!-- Direct Email Submission Script -->
+    <script>
+        function handleEmailSubmit(event) {
+            event.preventDefault();
+
+            const myEmail = "vaibhavakumarofficial@gmail.com";
+            const name = document.getElementById("clientName").value.trim();
+            const contact = document.getElementById("clientContact").value.trim();
+            const purpose = document.getElementById("purposeType").value;
+            const desc = document.getElementById("messageDesc").value.trim();
+
+            const subject = encodeURIComponent(`Website / Job Inquiry: ${name} (${purpose})`);
+            const body = encodeURIComponent(
+                `Hello Vaibhava,\n\n` +
+                `Here are my project requirements:\n\n` +
+                `Name: ${name}\n` +
+                `Contact: ${contact}\n` +
+                `Project Type: ${purpose}\n\n` +
+                `Details:\n${desc}\n`
+            );
+
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
