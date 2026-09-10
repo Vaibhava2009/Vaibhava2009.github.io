@@ -37,6 +37,7 @@
             overflow-x: hidden;
         }
 
+        /* Ambient Glow */
         .bg-glow {
             position: fixed;
             width: 550px;
@@ -50,6 +51,7 @@
             pointer-events: none;
         }
 
+        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -92,6 +94,7 @@
             color: var(--accent);
         }
 
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -209,8 +212,12 @@
             transform: translateY(-2px);
         }
 
+        /* Hero Image & Download Protection */
         .hero-img-wrapper {
             position: relative;
+            display: inline-block;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .hero-img {
@@ -223,9 +230,23 @@
             z-index: 1;
             transition: 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            pointer-events: none; /* Mouse clicks block karta hai */
+            -webkit-touch-callout: none; /* Mobile par long-press save band */
         }
 
-        .hero-img:hover {
+        /* Invisible shield overlay */
+        .img-protect-shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            border-radius: 24px;
+            background: transparent;
+        }
+
+        .hero-img-wrapper:hover .hero-img {
             border-color: var(--accent);
         }
 
@@ -241,6 +262,7 @@
             opacity: 0.45;
         }
 
+        /* Section Global */
         section {
             padding: 80px 8%;
         }
@@ -259,6 +281,7 @@
             color: var(--text-sub);
         }
 
+        /* Student & Goal Card */
         .about-cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -289,9 +312,13 @@
             font-size: 0.95rem;
         }
 
+        /* Projects Section */
         .project-grid {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .project-card {
@@ -300,11 +327,15 @@
             border-radius: 20px;
             padding: 32px;
             transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .project-card:hover {
             border-color: var(--accent);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-4px);
         }
 
         .project-tag {
@@ -316,17 +347,20 @@
             display: inline-block;
             margin-bottom: 15px;
             font-weight: 600;
+            width: fit-content;
         }
 
         .project-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
+            text-transform: capitalize;
         }
 
         .project-card p {
             color: var(--text-sub);
             font-size: 0.95rem;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .tech-stack {
@@ -344,6 +378,13 @@
             color: #cbd5e1;
         }
 
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Hire / Request Form */
         .request-box {
             max-width: 750px;
             margin: 0 auto;
@@ -392,13 +433,6 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
         }
 
-        #formStatus {
-            margin-top: 15px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
         .email-contact-strip {
             margin-top: 30px;
             padding: 16px 20px;
@@ -412,6 +446,7 @@
             gap: 15px;
         }
 
+        /* Skills */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -433,6 +468,7 @@
             color: var(--text-main);
         }
 
+        /* Footer */
         footer {
             border-top: 1px solid var(--card-border);
             text-align: center;
@@ -457,6 +493,7 @@
 
     <div class="bg-glow"></div>
 
+    <!-- Navigation -->
     <nav>
         <div class="logo">Vaibhava <span>Kumar</span></div>
         <ul class="nav-links">
@@ -468,6 +505,7 @@
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="status-badge">
@@ -486,12 +524,15 @@
             </div>
         </div>
 
-        <div class="hero-img-wrapper">
+        <!-- Hero Image With Protection Shield -->
+        <div class="hero-img-wrapper" oncontextmenu="return false;">
             <div class="img-backdrop"></div>
-            <img src="WhatsApp Image 2026-08-28 at 10.48.02 AM.jpeg" alt="Vaibhava Kumar" class="hero-img" onerror="this.onerror=null; this.src='profile.jpg';">
+            <div class="img-protect-shield"></div>
+            <img src="profile.jpg" alt="Vaibhava Kumar" class="hero-img" draggable="false" onerror="this.onerror=null; this.src='WhatsApp Image 2026-08-28 at 10.48.02 AM.jpeg';">
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about">
         <div class="section-title">
             <h2>Background & Ambition</h2>
@@ -515,59 +556,43 @@
         </div>
     </section>
 
+    <!-- Projects Section (Dynamic GitHub Sync) -->
     <section id="projects">
         <div class="section-title">
-            <h2>Featured Project</h2>
-            <p>Live applications built and hosted by me</p>
+            <h2>Featured Projects</h2>
+            <p>Directly synced live from my GitHub repositories</p>
         </div>
 
-        <div class="project-grid">
-            <div class="project-card">
-                <span class="project-tag">Live Web Application</span>
-                <h3>🔢 Vaibhav Number App</h3>
-                <p>
-                    An interactive, logic-driven web application hosted live on GitHub Pages. Provides instant mathematical calculations, responsive controls, and intuitive interface design.
-                </p>
-                <div class="tech-stack">
-                    <span class="tech-item">JavaScript (ES6+)</span>
-                    <span class="tech-item">HTML5</span>
-                    <span class="tech-item">CSS3</span>
-                    <span class="tech-item">GitHub Pages</span>
-                </div>
-                <div>
-                    <a href="https://vaibhava2009.github.io/vaibhav-number-app/" target="_blank" class="btn btn-primary">
-                        <i class="fas fa-external-link-alt"></i> Open Live App
-                    </a>
-                </div>
+        <div class="project-grid" id="github-projects">
+            <div style="text-align: center; grid-column: 1 / -1; color: var(--text-sub); padding: 40px;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent); margin-bottom: 12px;"></i>
+                <p>Fetching repositories from GitHub...</p>
             </div>
         </div>
     </section>
 
+    <!-- Hire / Request Website Section -->
     <section id="hire">
         <div class="section-title">
             <h2>Work With Me / Request a Website 🚀</h2>
-            <p>Apni details aur requirements yahan bharein, details automatic mere email par aa jayengi:</p>
+            <p>Apni details aur requirements yahan bharein, direct email draft ho jayega:</p>
         </div>
 
         <div class="request-box">
-            <!-- Web3Forms with your Access Key -->
-            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="7c475949-468e-43bd-803d-628e17331c34">
-                <input type="hidden" name="subject" value="New Website Inquiry for Vaibhava Kumar">
-
+            <form id="contactForm" onsubmit="handleEmailSubmit(event)">
                 <div class="form-group">
                     <label for="clientName"><i class="fas fa-user"></i> Aapka Naam (Your Name):</label>
-                    <input type="text" id="clientName" name="name" placeholder="e.g. Rahul Sharma" required>
+                    <input type="text" id="clientName" placeholder="e.g. Rahul Sharma" required>
                 </div>
 
                 <div class="form-group">
                     <label for="clientContact"><i class="fas fa-phone-alt"></i> Phone / Email (Contact details):</label>
-                    <input type="text" id="clientContact" name="contact" placeholder="Your phone number or email" required>
+                    <input type="text" id="clientContact" placeholder="Your phone number or email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="purposeType"><i class="fas fa-briefcase"></i> Purpose / Kaisi Website Chahiye?:</label>
-                    <select id="purposeType" name="purpose" required>
+                    <select id="purposeType" required>
                         <option value="Personal Portfolio">Personal Portfolio Website</option>
                         <option value="Business / Shop Website">Business / Local Shop Website</option>
                         <option value="School / Coaching Website">School / Coaching Institute Website</option>
@@ -579,17 +604,17 @@
 
                 <div class="form-group">
                     <label for="messageDesc"><i class="fas fa-pencil-alt"></i> Requirements / Message Details:</label>
-                    <textarea id="messageDesc" name="message" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
+                    <textarea id="messageDesc" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
                 </div>
 
                 <div style="display: flex;">
-                    <button type="submit" id="submitBtn" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
+                    <button type="submit" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
                         <i class="fas fa-paper-plane"></i> Send Details via Email
                     </button>
                 </div>
-                <div id="formStatus"></div>
             </form>
 
+            <!-- Direct Official Email Strip -->
             <div class="email-contact-strip">
                 <div>
                     <strong style="color: #fff; font-size: 0.95rem;"><i class="fas fa-envelope-open-text" style="color: var(--accent); margin-right: 8px;"></i> Direct Email for Jobs/Inquiries:</strong>
@@ -602,6 +627,7 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
     <section id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
@@ -618,51 +644,111 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>© 2026 <strong>Vaibhava Kumar</strong>. Student Developer & IIT Bombay CSE Aspirant 🚀</p>
     </footer>
 
-    <!-- Instant Submission via Web3Forms API -->
+    <!-- Scripts -->
     <script>
-        const form = document.getElementById("contactForm");
-        const statusText = document.getElementById("formStatus");
-        const submitBtn = document.getElementById("submitBtn");
+        // Image protection security listeners
+        const imageWrapper = document.querySelector('.hero-img-wrapper');
+        if (imageWrapper) {
+            imageWrapper.addEventListener('contextmenu', e => e.preventDefault());
+            imageWrapper.addEventListener('dragstart', e => e.preventDefault());
+        }
 
-        form.addEventListener("submit", async function (e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending Details...`;
-            statusText.innerHTML = "";
+        // Dynamic GitHub Repos Sync
+        const GITHUB_USERNAME = "vaibhava2009";
 
+        async function fetchGitHubRepos() {
+            const container = document.getElementById("github-projects");
             try {
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=10`);
+                if (!res.ok) throw new Error("Repositories fetch karne mein error aayi");
+                
+                const repos = await res.json();
+                
+                const filteredRepos = repos.filter(repo => 
+                    repo.name.toLowerCase() !== GITHUB_USERNAME.toLowerCase() && !repo.fork
+                );
+
+                if (filteredRepos.length === 0) {
+                    container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-sub);">Koi public repositories nahi mili.</p>`;
+                    return;
+                }
+
+                container.innerHTML = "";
+
+                filteredRepos.forEach(repo => {
+                    const liveDemo = repo.homepage ? repo.homepage : (repo.has_pages ? `https://${GITHUB_USERNAME}.github.io/${repo.name}/` : null);
+                    const description = repo.description || "Project created and hosted on GitHub.";
+                    const lang = repo.language || "Web / Code";
+                    const cleanTitle = repo.name.replace(/[-_]/g, ' ');
+
+                    const card = document.createElement("div");
+                    card.className = "project-card";
+
+                    card.innerHTML = `
+                        <div>
+                            <span class="project-tag"><i class="fas fa-code-branch"></i> ${lang}</span>
+                            <h3>${cleanTitle}</h3>
+                            <p>${description}</p>
+                            <div class="tech-stack">
+                                <span class="tech-item"><i class="fas fa-star" style="color:#fbbf24;"></i> ${repo.stargazers_count} Stars</span>
+                                <span class="tech-item"><i class="fas fa-code-fork"></i> ${repo.forks_count} Forks</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="${repo.html_url}" target="_blank" class="btn btn-secondary" style="padding: 9px 16px; font-size: 0.85rem;">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            ${liveDemo ? `
+                            <a href="${liveDemo}" target="_blank" class="btn btn-primary" style="padding: 9px 16px; font-size: 0.85rem;">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>` : ''}
+                        </div>
+                    `;
+                    container.appendChild(card);
                 });
 
-                const result = await response.json();
-
-                if (response.status === 200) {
-                    statusText.style.color = "#4ade80";
-                    statusText.innerHTML = "✅ Details successfully sent! Vaibhava will review and reply soon.";
-                    form.reset();
-                } else {
-                    statusText.style.color = "#f87171";
-                    statusText.innerHTML = `❌ ${result.message || "Error sending message."}`;
-                }
-            } catch (error) {
-                statusText.style.color = "#f87171";
-                statusText.innerHTML = "❌ Network error. Please check your connection.";
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Send Details via Email`;
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; color: var(--text-sub);">
+                        <p>Projects load nahi ho paye. Kripya GitHub profile check karein:</p>
+                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" class="btn btn-primary" style="margin-top: 15px;">
+                            <i class="fab fa-github"></i> Open GitHub Profile
+                        </a>
+                    </div>
+                `;
             }
-        });
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchGitHubRepos);
+
+        // Contact Form Function
+        function handleEmailSubmit(event) {
+            event.preventDefault();
+
+            const myEmail = "vaibhavakumarofficial@gmail.com";
+            const name = document.getElementById("clientName").value.trim();
+            const contact = document.getElementById("clientContact").value.trim();
+            const purpose = document.getElementById("purposeType").value;
+            const desc = document.getElementById("messageDesc").value.trim();
+
+            const subject = encodeURIComponent(`Website / Job Inquiry: ${name} (${purpose})`);
+            const body = encodeURIComponent(
+                `Hello Vaibhava,\n\n` +
+                `Here are my project requirements:\n\n` +
+                `Name: ${name}\n` +
+                `Contact: ${contact}\n` +
+                `Project Type: ${purpose}\n\n` +
+                `Details:\n${desc}\n`
+            );
+
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+        }
     </script>
 </body>
 </html>
