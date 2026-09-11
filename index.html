@@ -230,8 +230,8 @@
             z-index: 1;
             transition: 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            pointer-events: none; /* Mouse clicks block karta hai */
-            -webkit-touch-callout: none; /* Mobile par long-press save band */
+            pointer-events: none;
+            -webkit-touch-callout: none;
         }
 
         /* Invisible shield overlay */
@@ -575,24 +575,28 @@
     <section id="hire">
         <div class="section-title">
             <h2>Work With Me / Request a Website 🚀</h2>
-            <p>Apni details aur requirements yahan bharein, direct email draft ho jayega:</p>
+            <p>Apni details aur requirements yahan bharein, direct email inbox mein deliver ho jayegi:</p>
         </div>
 
         <div class="request-box">
-            <form id="contactForm" onsubmit="handleEmailSubmit(event)">
+            <form id="contactForm" onsubmit="handleWeb3Submit(event)">
+                <!-- Web3Forms Access Key Integration -->
+                <input type="hidden" name="access_key" value="7c475949-468e-43bd-803d-628e17331c34">
+                <input type="hidden" name="subject" value="New Website / Job Inquiry from Portfolio">
+
                 <div class="form-group">
                     <label for="clientName"><i class="fas fa-user"></i> Aapka Naam (Your Name):</label>
-                    <input type="text" id="clientName" placeholder="e.g. Rahul Sharma" required>
+                    <input type="text" id="clientName" name="name" placeholder="e.g. Rahul Sharma" required>
                 </div>
 
                 <div class="form-group">
                     <label for="clientContact"><i class="fas fa-phone-alt"></i> Phone / Email (Contact details):</label>
-                    <input type="text" id="clientContact" placeholder="Your phone number or email" required>
+                    <input type="text" id="clientContact" name="contact" placeholder="Your phone number or email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="purposeType"><i class="fas fa-briefcase"></i> Purpose / Kaisi Website Chahiye?:</label>
-                    <select id="purposeType" required>
+                    <select id="purposeType" name="project_type" required>
                         <option value="Personal Portfolio">Personal Portfolio Website</option>
                         <option value="Business / Shop Website">Business / Local Shop Website</option>
                         <option value="School / Coaching Website">School / Coaching Institute Website</option>
@@ -604,13 +608,14 @@
 
                 <div class="form-group">
                     <label for="messageDesc"><i class="fas fa-pencil-alt"></i> Requirements / Message Details:</label>
-                    <textarea id="messageDesc" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
+                    <textarea id="messageDesc" name="message" rows="4" placeholder="Website ke baare mein vistaar se batayein..." required></textarea>
                 </div>
 
-                <div style="display: flex;">
-                    <button type="submit" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button type="submit" id="submitBtn" class="btn btn-red" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
                         <i class="fas fa-paper-plane"></i> Send Details via Email
                     </button>
+                    <div id="formStatus" style="text-align: center; font-size: 0.95rem; font-weight: 500; display: none;"></div>
                 </div>
             </form>
 
@@ -727,27 +732,50 @@
 
         document.addEventListener("DOMContentLoaded", fetchGitHubRepos);
 
-        // Contact Form Function
-        function handleEmailSubmit(event) {
+        // Web3Forms AJAX Submission (Direct to Inbox)
+        async function handleWeb3Submit(event) {
             event.preventDefault();
 
-            const myEmail = "vaibhavakumarofficial@gmail.com";
-            const name = document.getElementById("clientName").value.trim();
-            const contact = document.getElementById("clientContact").value.trim();
-            const purpose = document.getElementById("purposeType").value;
-            const desc = document.getElementById("messageDesc").value.trim();
+            const form = document.getElementById("contactForm");
+            const btn = document.getElementById("submitBtn");
+            const status = document.getElementById("formStatus");
 
-            const subject = encodeURIComponent(`Website / Job Inquiry: ${name} (${purpose})`);
-            const body = encodeURIComponent(
-                `Hello Vaibhava,\n\n` +
-                `Here are my project requirements:\n\n` +
-                `Name: ${name}\n` +
-                `Contact: ${contact}\n` +
-                `Project Type: ${purpose}\n\n` +
-                `Details:\n${desc}\n`
-            );
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending Details...`;
+            status.style.display = "none";
 
-            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    status.style.display = "block";
+                    status.style.color = "#34d399";
+                    status.innerText = "✓ Details successfully bhej di gayi hain! Main aapse jald hi contact karunga.";
+                    form.reset();
+                } else {
+                    throw new Error(result.message || "Submission failed");
+                }
+            } catch (error) {
+                status.style.display = "block";
+                status.style.color = "#f87171";
+                status.innerText = "Error: Message send nahi ho paya. Kripya niche diye gaye direct email par contact karein.";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fas fa-paper-plane"></i> Send Details via Email`;
+            }
         }
     </script>
 </body>
