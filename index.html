@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaibhava Kumar | Student Developer</title>
+    <title>Vaibhava Kumar | Student Developer & IIT Bombay Aspirant</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -81,7 +81,6 @@
             display: flex;
             list-style: none;
             gap: 22px;
-            align-items: center;
         }
 
         .nav-links a {
@@ -93,24 +92,6 @@
 
         .nav-links a:hover {
             color: var(--accent);
-        }
-
-        .btn-nav-hire {
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            color: #0b0f19 !important;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 600 !important;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-nav-hire:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
-            color: #0b0f19 !important;
         }
 
         /* Hero Section */
@@ -148,10 +129,10 @@
             align-items: center;
             gap: 8px;
             padding: 8px 18px;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.35);
             border-radius: 50px;
-            color: var(--accent);
+            color: #fbbf24;
             font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 20px;
@@ -185,7 +166,7 @@
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
@@ -196,17 +177,6 @@
             gap: 8px;
             border: none;
             font-size: 0.95rem;
-        }
-
-        .btn-hire-hero {
-            background: linear-gradient(135deg, #f59e0b, #ec4899);
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
-        }
-
-        .btn-hire-hero:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.55);
         }
 
         .btn-primary {
@@ -260,10 +230,11 @@
             z-index: 1;
             transition: 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            pointer-events: none;
-            -webkit-touch-callout: none;
+            pointer-events: none; /* Mouse clicks block karta hai */
+            -webkit-touch-callout: none; /* Mobile par long-press save band */
         }
 
+        /* Invisible shield overlay */
         .img-protect-shield {
             position: absolute;
             top: 0;
@@ -310,7 +281,7 @@
             color: var(--text-sub);
         }
 
-        /* About Cards */
+        /* Student & Goal Card */
         .about-cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -481,7 +452,7 @@
             flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -495,12 +466,6 @@
             gap: 10px;
             font-weight: 500;
             color: var(--text-main);
-            transition: 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -535,8 +500,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#hire">Hire / Request</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#hire" class="btn-nav-hire"><i class="fas fa-briefcase"></i> Hire Me / HR</a></li>
         </ul>
     </nav>
 
@@ -547,15 +512,14 @@
                 <i class="fas fa-book-reader"></i> Student & Self-Taught Web Developer
             </div>
             <div class="badge-dream">
-                <i class="fas fa-chart-line"></i> Dedicated to Growth & Excellence
+                <i class="fas fa-graduation-cap"></i> Dream: CSE @ IIT Bombay 🎯
             </div>
             <h1>Hi, I'm <span>Vaibhava Kumar</span></h1>
             <p>
-                To become a successful person, you must set clear goals, work hard every day, learn from your mistakes, and never give up. I apply this mindset to develop responsive web applications, write efficient code, and continuously build real-world digital projects.
+                A high school student passionate about Computer Science, mathematics, and building responsive web applications. Looking forward to student internships, freelance web projects, and software opportunities.
             </p>
             <div class="cta-btns">
-                <a href="#hire" class="btn btn-hire-hero"><i class="fas fa-user-check"></i> Hire Me / Recruiter Portal</a>
-                <a href="#hire" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Request Website</a>
+                <a href="#hire" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact / Request Web</a>
                 <a href="https://github.com/vaibhava2009" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
@@ -572,17 +536,14 @@
     <section id="about">
         <div class="section-title">
             <h2>Background & Ambition</h2>
-            <p>Balancing disciplined principles with a passion for software development</p>
+            <p>Balancing rigorous academics with a passion for software development</p>
         </div>
 
         <div class="about-cards-container">
             <div class="info-card">
-                <h3 style="color: var(--accent);"><i class="fas fa-compass"></i> Blueprint for Success</h3>
-                <p style="margin-bottom: 12px; font-weight: 500; color: #f8fafc;">
-                    To become a successful person, you must set clear goals, work hard every day, learn from your mistakes, and never give up.
-                </p>
+                <h3 style="color: #fbbf24;"><i class="fas fa-bullseye"></i> Dream: IIT Bombay CSE</h3>
                 <p>
-                    Sustainable success is driven by clarity and perseverance. It starts with setting clear goals by defining targets and creating actionable plans. It grows through daily hard work and consistent positive habits. Each setback is treated as an invaluable lesson to grow stronger, powered by the courage to stay persistent through any challenge.
+                    My ultimate goal is to crack JEE Advanced and pursue <strong>Computer Science & Engineering at IIT Bombay</strong>. I dedicate myself to mathematics and core logic, building the foundation required for top-tier software engineering.
                 </p>
             </div>
 
@@ -621,7 +582,7 @@
             <form id="contactForm" onsubmit="handleEmailSubmit(event)">
                 <div class="form-group">
                     <label for="clientName"><i class="fas fa-user"></i> Aapka Naam (Your Name):</label>
-                    <input type="text" id="clientName" placeholder="Enter your name" required>
+                    <input type="text" id="clientName" placeholder="e.g. Rahul Sharma" required>
                 </div>
 
                 <div class="form-group">
@@ -632,12 +593,11 @@
                 <div class="form-group">
                     <label for="purposeType"><i class="fas fa-briefcase"></i> Purpose / Kaisi Website Chahiye?:</label>
                     <select id="purposeType" required>
-                        <option value="HR Recruiter / Job Offer">💼 HR Recruiter: Job Offer / Hiring</option>
-                        <option value="Student Internship / Junior Dev">🎯 Student Internship / Trainee</option>
                         <option value="Personal Portfolio">Personal Portfolio Website</option>
                         <option value="Business / Shop Website">Business / Local Shop Website</option>
                         <option value="School / Coaching Website">School / Coaching Institute Website</option>
                         <option value="E-Commerce / Store">Online Store / E-Commerce</option>
+                        <option value="Student Internship / Job Offer">Job / Internship Opportunity</option>
                         <option value="Other Custom Project">Other Custom Project</option>
                     </select>
                 </div>
@@ -671,29 +631,22 @@
     <section id="skills">
         <div class="section-title">
             <h2>Technical Skills</h2>
-            <p>Core competencies, programming languages & soft skills</p>
+            <p>Core competencies & academic strengths</p>
         </div>
 
         <div class="skills-container">
             <div class="skill-badge"><i class="fab fa-html5" style="color: #e34f26;"></i> HTML5</div>
             <div class="skill-badge"><i class="fab fa-css3-alt" style="color: #1572b6;"></i> CSS3 & Styling</div>
             <div class="skill-badge"><i class="fab fa-js" style="color: #f7df1e;"></i> JavaScript</div>
-            <div class="skill-badge"><i class="fab fa-python" style="color: #3776ab;"></i> Python</div>
-            <div class="skill-badge"><i class="fas fa-code" style="color: #00599c;"></i> C++</div>
-            <div class="skill-badge"><i class="fab fa-java" style="color: #e76f00;"></i> Java</div>
             <div class="skill-badge"><i class="fab fa-github" style="color: #ffffff;"></i> Git & GitHub</div>
             <div class="skill-badge"><i class="fas fa-mobile-alt" style="color: #38bdf8;"></i> Responsive UI</div>
-            <div class="skill-badge"><i class="fas fa-desktop" style="color: #60a5fa;"></i> Computer Systems</div>
             <div class="skill-badge"><i class="fas fa-brain" style="color: #a855f7;"></i> Mathematics & Logic</div>
-            <div class="skill-badge"><i class="fas fa-file-word" style="color: #2b579a;"></i> Microsoft Word</div>
-            <div class="skill-badge"><i class="fas fa-file-excel" style="color: #217346;"></i> Microsoft Excel</div>
-            <div class="skill-badge"><i class="fas fa-comments" style="color: #10b981;"></i> Communication Skills</div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 <strong>Vaibhava Kumar</strong>. Student Developer & Tech Enthusiast 🚀</p>
+        <p>© 2026 <strong>Vaibhava Kumar</strong>. Student Developer & IIT Bombay CSE Aspirant 🚀</p>
     </footer>
 
     <!-- Scripts -->
@@ -786,22 +739,15 @@
 
             const subject = encodeURIComponent(`Website / Job Inquiry: ${name} (${purpose})`);
             const body = encodeURIComponent(
-                `Hello Vaibhava,\r\n\r\n` +
-                `Here are the requirements/details:\r\n\r\n` +
-                `Name: ${name}\r\n` +
-                `Contact: ${contact}\r\n` +
-                `Project/Purpose: ${purpose}\r\n\r\n` +
-                `Details:\r\n${desc}\r\n`
+                `Hello Vaibhava,\n\n` +
+                `Here are my project requirements:\n\n` +
+                `Name: ${name}\n` +
+                `Contact: ${contact}\n` +
+                `Project Type: ${purpose}\n\n` +
+                `Details:\n${desc}\n`
             );
 
-            const mailtoUri = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-
-            const tempLink = document.createElement("a");
-            tempLink.href = mailtoUri;
-            tempLink.target = "_blank";
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
         }
     </script>
 </body>
